@@ -1,2 +1,5 @@
 stop paragraph - part 6
 If you run the project, you may notice something strange about our mean spirited monsters: They can insult you from a diagonal position, but the player and the monsters can only move in the cardinal directions (north, east, south, west). If the enemies were actually attacking us right now, they'd have an unfair advantage. While this could make for interesting gameplay, we'll fix that here to allow for 8 directional attacking and movement for all Entities.
+
+6.1
+There's nothing too complex about this system. We're taking the attacker's power and subtracting the defender's defense, and getting our damage dealt. If the damage is above zero, then the target takes damage.

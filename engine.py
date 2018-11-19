@@ -31,7 +31,7 @@ def main():
         'light_ground': libtcod.Color(200, 180, 50)
     }
 
-    fighter_component = Fighter(hp = 30, defense = 2, power = 5)
+    fighter_component = Fighter(hp = 30, defence = 2, power = 5)
     player = Entity(0, 0, '@', libtcod.white, 'Player', blocks = True, fighter = fighter_component)
     entities = [player]
 
