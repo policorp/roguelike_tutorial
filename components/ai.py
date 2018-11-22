@@ -4,7 +4,7 @@ class BasicMonster:
     def take_turn(self, target, fov_map, game_map, entities):
         results = []
 
-        print('The ' + self.owner.name + ' wonders when it will get to move.')
+#        print('The ' + self.owner.name + ' wonders when it will get to move.')
         monster = self.owner
         if libtcod.map_is_in_fov(fov_map, monster.x, monster.y):
 
