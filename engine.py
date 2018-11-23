@@ -89,11 +89,12 @@ def main():
 
         clear_all(con, entities)
 
-        action = handle_keys(key)
+        action = handle_keys(key ,game_state)
 
         move = action.get('move')
         pickup = action.get('pickup')
         show_inventory = action.get('show_inventory')
+        inventory_index = action.get('inventory_index')
         exit = action.get('exit')
         fullscreen = action.get('fullscreen')
 
@@ -132,6 +133,10 @@ def main():
             previous_game_state = game_state
             game_state = GameStates.SHOW_INVENTORY
 
+        if inventory_index is not None and previous_game_state != GameStates.PLAYER_DEAD and inventory_index < len(player.inventory.items):
+            item = player.inventory.items[inventory_index]
+            player_turn_results.extend(player.inventory.use(item))
+
         if exit:
             if game_state == GameStates.SHOW_INVENTORY:
                 game_state = previous_game_state
@@ -145,6 +150,7 @@ def main():
             message = player_turn_result.get('message')
             dead_entity = player_turn_result.get('dead')
             item_added = player_turn_result.get('item_added')
+            item_consumed = player_turn_result.get('consumed')
 
             if message:
                 #print(message.text)
@@ -163,6 +169,9 @@ def main():
             if item_added:
                 entities.remove(item_added)
 
+                game_state = GameStates.ENEMY_TURN
+
+            if item_consumed:
                 game_state = GameStates.ENEMY_TURN
 
         if game_state == GameStates.ENEMY_TURN:
