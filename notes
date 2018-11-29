@@ -1,2 +1,5 @@
-part 8.1 - inventory
-Run the project, and you should be able to pick the healing potions up off the ground.
+necessary libraries:
+check installed packages:
+    pip list
+libtcod:
+    pip install tcod
