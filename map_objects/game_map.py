@@ -136,12 +136,12 @@ class GameMap:
                 monster_choice = random_choice_from_dict(monster_chances)
 
                 if monster_choice == 'orc':
-                    fighter_component = Fighter(hp = 10, defense = 0, power = 3, xp = 35)
+                    fighter_component = Fighter(hp = 20, defense = 0, power = 4, xp = 35)
                     ai_component = BasicMonster()
                     monster = Entity(x, y, 'o', libtcod.desaturated_green, 'Orc', blocks = True,
                                      render_order = RenderOrder.ACTOR, fighter = fighter_component, ai = ai_component)
                 else:
-                    fighter_component = Fighter(hp = 16, defense = 1, power = 4, xp = 100)
+                    fighter_component = Fighter(hp = 30, defense = 2, power = 8, xp = 100)
                     ai_component = BasicMonster()
                     monster = Entity(x, y, 'T', libtcod.darker_green, 'Troll', blocks = True,
                                      render_order = RenderOrder.ACTOR, fighter = fighter_component, ai = ai_component)
@@ -156,13 +156,13 @@ class GameMap:
                 item_choice = random_choice_from_dict(item_chances)
 
                 if item_choice == 'healing_potion':
-                    item_component = Item(use_function = heal, amount = 4)
+                    item_component = Item(use_function = heal, amount = 40)
                     item = Entity(x, y, '!', libtcod.violet, 'Healing Potion', render_order = RenderOrder.ITEM,
                                   item = item_component)
                 elif item_choice == 'fireball_scroll':
                     item_component = Item(use_function = cast_fireball, targeting = True, targeting_message = Message(
                         'Left-click a target tile for the fireball, or right-click to cancel.', libtcod.cyan),
-                                          damage = 12, radius = 3)
+                                          damage = 25, radius = 3)
                     item = Entity(x, y, '#', libtcod.red, 'Fireball Scroll', render_order = RenderOrder.ITEM,
                                   item = item_component)
                 elif item_choice == 'confusion_scroll':
@@ -171,7 +171,7 @@ class GameMap:
                     item = Entity(x, y, '#', libtcod.light_pink, 'Confusion scroll', render_order = RenderOrder.ITEM,
                                   item = item_component)
                 else:
-                    item_component = Item(use_function = cast_lightning, damage = 20, maximum_range = 5)
+                    item_component = Item(use_function = cast_lightning, damage = 40, maximum_range = 5)
                     item = Entity(x, y, '#', libtcod.yellow, 'Lightning Scroll', render_order = RenderOrder.ITEM,
                                   item = item_component)
                 entities.append(item)
